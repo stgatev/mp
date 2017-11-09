@@ -1,0 +1,8 @@
+{
+    "server": {
+        "port": 8000
+    },
+    "logger": {
+        "format": ":id :date[iso] :method :url :status :user-agent :remote-addr :response-time ms"
+    }
+}
