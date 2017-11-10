@@ -14,22 +14,29 @@ class App {
     public express: express.Application;
 
     constructor() {
-        this.express = express();
-        this.express.set('config', config);
-        this.express.use((req, res, next) => { (req as any).id = uuid.v4(); next(); });
-        this.express.use(morgan(config.has('logger.format') ? config.get('logger.format') as string : 'dev'));
-        this.express.use(bodyParser.json());
-        this.express.use(bodyParser.urlencoded({ extended: false }));
+        this.express = express()
+            .use(bodyParser.json())
+            .use(bodyParser.urlencoded({ extended: false }))
 
-        this.express.use(swaggerize({
-            api: path.resolve('./spec/api.json'),
-            handlers: path.resolve('./dist/handlers'),
-            docspath: '/swagger/docs/v1'
-        }));
+            .set('config', config)
 
-        this.express.use('/swagger', swaggerUi({
-            docs: '/swagger/docs/v1'
-        }));
+            .use((req, res, next) => { (req as any).id = uuid.v4(); next(); })
+            .use(morgan(config.has('logger.format') ? config.get('logger.format') as string : 'dev'))
+
+            // REST handlers
+            .use(swaggerize({
+                api: path.resolve('./spec/api.json'),
+                handlers: path.resolve('./dist/handlers'),
+                docspath: '/swagger/docs'
+            }))
+
+            // Static content
+            .use('/data', express.static('data'))
+
+            // API spec
+            .use('/swagger', swaggerUi({
+                docs: '/swagger/docs'
+            }));
 
         morgan.token('id', (req) => { return (req as any).id; });
     }

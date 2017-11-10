@@ -10,15 +10,19 @@ This is a NodeJS / Express application. It is written in TypeScript, and uses Sw
 #### NodeJS with NPM
 Download Node from [nodejs.org](https://nodejs.org). Minimum required version is 6.9.1. Node distributions include NPM, the Node Package Manager.
 
-#### Yarn
-Install Yarn globally (if installed locally, the package installation may try to remove it, as it is not declared as a project dependency, and run into a problem)
+#### [Optional] Using Yarn
+If using Yarn, install it globally. If installed locally, the package installation may try to remove it, as it is not declared as a project dependency, and run into a problem.
 ```
 npm install -g yarn
 ```
 
 #### Project dependencies
-The project dependencies are declared in **package.json**. They can be installed by NPM or Yarn. Yarn is recommended. If **yarn.lock** file does not exist, it will be created and versions locked. After cloning the project, run **yarn**:
+The project dependencies are declared in **package.json**. They can be installed by NPM or Yarn. Either should work, however, Yarn is more performant and resilient.
 ```
+npm install
+
+-- OR --
+
 yarn
 ```
 **NOTE:** On Windows, it is possible for the Node modules installation by either NPM or Yarn to fail with a message stating a staging directory could not be renamed. Try disabling the Antivirus (both Real-time and Cloud-based protection). Another thing to try is to change the maximum path lenght, kept in the MAX_PATH environment variable, originally set to 260 characters, to a larger value:
@@ -54,6 +58,6 @@ The project includes Visual Studio Code tasks configuration as well as a launch 
 #### Tasks Configuration
 Visual Studio Code can run *tasks*. To run a task, open the Command Palette (View->Command Palette or *Ctrl-Shift-P*), then select "Run Task" command, and select the task to run.
 
-- **build** invokes the TypeScript transpiler and converts the TypeScript code to JavaScript, ready for execution. The **build** task is also set as a default build task so it can be invoked with "Tasks: Run Build Task" command (*Ctrl-Shift-B*).
+- The **build** task invokes the TypeScript transpiler and converts the TypeScript code to JavaScript, ready for execution. The **build** task is also set as a default build task so it can be invoked with "Tasks: Run Build Task" command (*Ctrl-Shift-B*).
 
-- **test** runs all unit and integration tests. The task is configured as a designated test task in Visual Studio Code, and can be executed directly with "Tasks: Run Test Task".
+- The **test** task runs all unit and integration tests. The task is configured as a designated test task in Visual Studio Code, and can be executed directly with "Tasks: Run Test Task".
