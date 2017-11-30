@@ -38,6 +38,9 @@ class App {
                 docs: '/swagger/docs'
             }));
 
+            // Auth routes
+            app.use('/auth', authRoutes);
+
         morgan.token('id', (req) => { return (req as any).id; });
     }
 }

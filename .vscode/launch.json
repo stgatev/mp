@@ -12,7 +12,8 @@
             "cwd": "${workspaceRoot}",
             "outFiles": ["${workspaceRoot}/dist/**/*.js"],
             "sourceMaps": true,
-            "preLaunchTask": "build"
+            "preLaunchTask": "build",
+            "outputCapture": "std"
         }
     ]
 }
