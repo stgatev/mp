@@ -6,6 +6,7 @@ import * as swaggerize from 'swaggerize-express';
 import * as swaggerUi from 'swaggerize-ui';
 import * as uuid from 'uuid';
 import * as config from 'config';
+import { router as authRouter } from './routers/authRouter';
 
 // iisnode changes the working directory to that of the handler
 process.chdir(path.resolve(__dirname + './..'));
@@ -34,12 +35,10 @@ class App {
             .use('/data', express.static('data'))
 
             // API spec
-            .use('/swagger', swaggerUi({
-                docs: '/swagger/docs'
-            }));
+            .use('/swagger', swaggerUi({ docs: '/swagger/docs' }))
 
             // Auth routes
-            app.use('/auth', authRoutes);
+            .use('/auth', authRouter);
 
         morgan.token('id', (req) => { return (req as any).id; });
     }
