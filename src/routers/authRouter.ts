@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import * as passport from 'passport';
-
-let router = Router()
-    .get('/login', (req, res) => {
+import { authenticate } from 'passport';
+import { Request, Response } from 'express';
+const router = Router()
+    .get('/login', (req: Request, res: Response) => {
         res.render('login', { user: req.user });
     })
 
@@ -10,11 +10,11 @@ let router = Router()
         res.send('logging out');
     })
 
-    .get('/google', passport.authenticate('google', {
+    .get('/google', authenticate('google', {
         scope: ['profile']
     }))
 
-    .get('/google/redirect', passport.authenticate('google'), (req, res) => {
+    .get('/google/redirect', authenticate('google'), (req, res) => {
         res.send('you reached the redirect URI');
     });
 

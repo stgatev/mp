@@ -1,0 +1,5 @@
+# Ignore everything except this file and default config
+*
+*/
+!.gitignore
+!default.json
