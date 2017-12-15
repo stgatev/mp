@@ -5,7 +5,8 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "dist",
-        "mapRoot": "dist"
+        "mapRoot": "dist",
+        "allowSyntheticDefaultImports": true
     },
     "include": [
         "src/**/*.ts"

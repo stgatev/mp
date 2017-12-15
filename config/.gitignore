@@ -1,5 +1,6 @@
-# Ignore everything except this file and default config
+# Don't track configurations
 *
 */
 !.gitignore
 !default.json
+!README.md
